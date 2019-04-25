@@ -14,9 +14,10 @@ SELECT subject, SUM(response) FROM nss WHERE question = 'Q22' AND (subject = '(8
 SELECT subject, SUM(A_STRONGLY_AGREE*response/100) FROM nss WHERE question='Q22' AND (subject = '(8) Computer Science' OR subject = '(H) Creative Arts and Design') GROUP BY subject;
 
 --question 6
-
+SELECT subject, ROUND(SUM(A_STRONGLY_AGREE*response)/SUM(response)) FROM nss WHERE question='Q22' AND (subject = '(8) Computer Science' OR subject = '(H) Creative Arts and Design') GROUP BY subject;
 
 --question 7
-
+SELECT institution, ROUND(SUM(score*response)/SUM(response)) FROM nss WHERE question = 'Q22' AND institution LIKE '%Manchester%' GROUP BY institution;
 
 --question 8
+SELECT institution, SUM(sample), SUM(CASE WHEN subject = '(8) Computer Science' THEN sample END) FROM nss WHERE question = 'Q01' AND institution LIKE '%Manchester%' GROUP BY institution;
